@@ -1,0 +1,185 @@
+/* 
+* To change this license header, choose License Headers in 
+* Project Properties. To change this template file, choose 
+* Tools | Templates and open the template in the editor. 
+*/ 
+ 
+import Database.DBQuery; 
+import java.io.IOException; 
+import java.io.PrintWriter; 
+import java.sql.SQLException; 
+import java.text.SimpleDateFormat; 
+import java.util.Date; 
+import java.util.logging.Level; 
+import java.util.logging.Logger; 
+import javax.servlet.RequestDispatcher; 
+import javax.servlet.ServletException; 
+import javax.servlet.http.HttpServlet; 
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+import javax.servlet.http.HttpSession; 
+ 
+/** 
+* 
+* @author sumit 
+*/ 
+public
+
+class submit_answer extends HttpServlet { 
+/** 
+* Processes requests for both HTTP <code>GET</code> and <code>POST</code> 
+* methods. 
+* 
+* @param request servlet request 
+* @param response servlet response 
+* 
+@throws ServletException if a servlet-specific error occurs 
+* @throws IOException if an I/O error occurs 
+*/ 
+protected 
+void processRequest(HttpServletRequest request, 
+HttpServletResponse response) throws ServletException, 
+IOException { 
+ 
+response.setContentType("text/html;charset=UTF-8"); 
+try 
+(PrintWriter out = response.getWriter()) { 
+/* TODO output your page here. You may use following sample code. */ 
+String a1 = request.getParameter("a1"); 
+String a2 = request.getParameter("a2"); 
+String a3 = request.getParameter("a3"); 
+String a4 = request.getParameter("a4"); 
+String a5 = request.getParameter("a5"); 
+String a6 = request.getParameter("a6"); 
+String a7 = request.getParameter("a7"); 
+String a8 = request.getParameter("a8"); 
+String a9 = request.getParameter("a9"); 
+String a10 = request.getParameter("a10"); 
+RequestDispatcher rd = null;HttpSession session = request.getSession(); 
+String coursename = ""; 
+ 
+if (session.getAttribute("coursename") != null) { 
+coursename = session.getAttribute("coursename").toString(); 
+} 
+ 
+DBQuery db = new DBQuery(); 
+int score = 0; 
+try { 
+String db_a1 = db.get_answer(coursename, 1); 
+String db_a2 = db.get_answer(coursename, 2); 
+String db_a3 = db.get_answer(coursename, 3); 
+String db_a4 = db.get_answer(coursename, 4); 
+String db_a5 = db.get_answer(coursename, 5); 
+String db_a6 = db.get_answer(coursename, 6); 
+String db_a7 = db.get_answer(coursename, 7); 
+String db_a8 = db.get_answer(coursename, 8); 
+String db_a9 = db.get_answer(coursename, 9); 
+ 
+String db_a10 = db.get_answer(coursename, 10); 
+if (a1.equals(db_a1)) { 
+score++; 
+} 
+if (a2.equals(db_a2)) { 
+score++; 
+} 
+if (a3.equals(db_a3)) { 
+score++; 
+} 
+if (a4.equals(db_a4)) {
+
+score++; 
+} 
+if (a5.equals(db_a5)) { 
+score++; 
+} 
+if (a6.equals(db_a6)) { 
+score++; 
+} 
+if (a7.equals(db_a7)) { 
+score++; 
+} 
+if (a8.equals(db_a8)) { 
+score++; 
+} 
+if (a9.equals(db_a9)) { 
+score++; 
+} 
+if (a10.equals(db_a10)) { 
+score++; 
+} 
+String pattern = "dd-MM-yyyy"; 
+SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern); 
+ 
+ 
+String tdate = simpleDateFormat.format(new Date()); 
+System.out.println(tdate); 
+ 
+String pattern1 = "hh-mm-ss"; 
+SimpleDateFormat simpleDateFormat1 = 
+new SimpleDateFormat(pattern1); 
+ 
+String tdate1 = simpleDateFormat1.format(new Date());
+
+tdate1 = tdate1.replace(":", "-"); 
+System.out.println(tdate1); 
+db.add_answer(coursename, score + "", tdate, tdate1); 
+} catch (ClassNotFoundException ex) { 
+Logger.getLogger(submit_answer.class.getName()) 
+.log(Level.SEVERE, null, ex); 
+} catch (SQLException ex) { 
+Logger.getLogger(submit_answer.class.getName()) 
+.log(Level.SEVERE, null, ex); 
+} 
+session.setAttribute( 
+"msg", "Answer Submitted and you have scored " + score); 
+ 
+rd = request.getRequestDispatcher("chooseSubject.jsp"); 
+rd.forward(request, response); 
+} 
+} 
+ 
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click 
+// on the + sign on the left to edit the code."> 
+/** 
+* Handles the HTTP <code>GET</code> method. 
+* 
+* @param request servlet request 
+* @param response servlet response 
+* @throws ServletException if a servlet-specific error occurs 
+ 
+ 
+* @throws IOException if an I/O error occurs 
+*/ 
+@Override protected void doGet(HttpServletRequest request, 
+HttpServletResponse response) throws
+
+ServletException, 
+IOException { 
+processRequest(request, response); 
+} 
+ 
+/** 
+* Handles the HTTP <code>POST</code> method. 
+* 
+* @param request servlet request 
+* @param response servlet response 
+* @throws ServletException if a servlet-specific error occurs 
+* @throws IOException if an I/O error occurs 
+*/ 
+@Override protected void doPost(HttpServletRequest request, 
+HttpServletResponse response) throws 
+ServletException, 
+IOException { 
+processRequest(request, response); 
+} 
+ 
+ 
+/** 
+* Returns a short description of the servlet. 
+* 
+* @return a String containing servlet description 
+*/ 
+@Override public String getServletInfo() { 
+return "Short description"; 
+}  // </editor-fold> 
+}
