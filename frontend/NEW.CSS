@@ -1,0 +1,89 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.container2 
+{
+    display: flex;
+    height: 100px; /* Full height of the viewport */
+}
+
+.block2 {
+    padding-top: 20px;
+    flex: 1; /* Each block takes up equal space */
+    background-color: #f36b95; /* Blue color (you can change this to any color you want) */
+    margin: 5px; /* Add some margin between blocks */
+    font-size: 24px; /* Set the font size to 24 pixels */
+    text-align: center;
+}
+.container {
+    display: flex;
+    height: 30vh; /* Full height of the viewport */
+}
+
+.block {
+    flex: 1; /* Each block takes up equal space */
+    background-color: #188EAD; /* Blue color (you can change this to any color you want) */
+    margin: 5px; /* Add some margin between blocks */
+}
+.container1 {
+    display: flex;
+    height: 100px; /* Full height of the viewport */
+}
+
+.block1 {
+    flex: 1; /* Each block takes up equal space */
+    background-color: #56EB26; /* Blue color (you can change this to any color you want) */
+    margin: 5px; /* Add some margin between blocks */
+    display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+}
+.block1:hover {
+            background-color: #0056b3;
+        }
+.containerq {
+    display: flex;
+    height: 500px; /* Full height of the viewport */
+}
+
+.blockq {
+    flex: 1; /* Each block takes up equal space */
+    background-color: #1BDD91; /* Blue color (you can change this to any color you want) */
+    margin: 5px; /* Add some margin between blocks */
+    font-size: 34px; /* Set the font size to 24 pixels */
+    text-align: center;
+}
+
+.containerp {
+    display: flex;
+    height: 100px; /* Full height of the viewport */
+}
+
+.blockp {
+    flex: 1; /* Each block takes up equal space */
+    background-color: #ffffff; /* Blue color (you can change this to any color you want) */
+    margin: 5px; /* Add some margin between blocks */
+    display: inline-block;
+            padding: 10px 20px;
+            background-color: #E1DAD8;
+            color: #ffffff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            
+}
+.blockp:hover {
+            background-color: #0056b3;
+        }
